@@ -1,2 +1,6 @@
-PyQt5
-opencv-python 
+PyQt5>=5.15.0
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+qt-material>=2.14
+sqlalchemy>=2.0.0
+numpy>=1.24.0 
