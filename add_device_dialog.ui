@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddDeviceDialog</class>
+ <widget class="QDialog" name="AddDeviceDialog">
+  <property name="windowTitle">
+   <string>Add New Device</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_name">
+       <property name="text">
+        <string>Device Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="name_input"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_ip">
+       <property name="text">
+        <string>IP:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="ip_input"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_port">
+       <property name="text">
+        <string>Port:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="port_input">
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+       <property name="value">
+        <number>554</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_user">
+       <property name="text">
+        <string>Username:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="username_input"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_pass">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="password_input">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_rtsp">
+       <property name="text">
+        <string>RTSP Format:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="rtsp_format_input">
+       <property name="placeholderText">
+        <string>e.g., rtsp://{user}:{pass}@{ip}:{port}/stream</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

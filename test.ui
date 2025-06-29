@@ -62,7 +62,8 @@ border-radius: 5px;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>assets/icons/hand-detection-icon.png</normaloff>assets/icons/hand-detection-icon.png</iconset>
+             <normaloff>assets/icons/hand-detection-active-icon.png</normaloff>
+             <selectedoff>assets/icons/hand-detection-deactive-icon.png</selectedoff>assets/icons/hand-detection-active-icon.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -156,7 +157,7 @@ border-radius: 5px;
              <item>
               <widget class="QPushButton" name="add_device_button">
                <property name="text">
-                <string>PushButton</string>
+                <string>new device</string>
                </property>
               </widget>
              </item>

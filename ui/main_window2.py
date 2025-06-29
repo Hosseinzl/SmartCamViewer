@@ -5,11 +5,12 @@ from PyQt5 import QtWidgets, uic
 from qt_material import apply_stylesheet
 import sys
 import cv2
+from ui.add_device_dialog import AddDeviceDialog
 from devices.device_manager_service import DeviceManagerService
 from devices.device_display_service import DeviceDisplayService
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QImage, QPixmap
-from PyQt5.QtWidgets import QSizePolicy
+from PyQt5.QtWidgets import QDialog, QSizePolicy
 
 class MainDialog(QtWidgets.QDialog):
     def __init__(self):
@@ -55,8 +56,13 @@ class MainDialog(QtWidgets.QDialog):
         self.current_device_id = device_id
 
     def add_device(self):
-        device_name = self.comboBox.currentText()
-        print(f"Adding device: {device_name}")
+        dialog = AddDeviceDialog(self)
+        result = dialog.exec_()
+
+        if result == QDialog.Accepted:
+            device_info = dialog.get_device_data()
+            print("New device info:", device_info)
+            # You can handle dialog result here if needed
 
     def update_frame(self):
         if not self.current_device_id:
