@@ -1,3 +1,9 @@
+import logging
+# Suppress SQLAlchemy logs completely
+logging.getLogger('sqlalchemy.engine').setLevel(logging.ERROR)
+logging.getLogger('sqlalchemy.pool').setLevel(logging.ERROR)
+logging.getLogger('sqlalchemy.dialects').setLevel(logging.ERROR)
+
 import sys
 from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet

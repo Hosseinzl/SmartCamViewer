@@ -38,7 +38,7 @@ border-radius: 5px;
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="hand_detection_toggle">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -58,18 +58,22 @@ border-radius: 5px;
             </size>
            </property>
            <property name="text">
-            <string>PushButton</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>assets/icons/hand-detection-icon.png</normaloff>assets/icons/hand-detection-icon.png</iconset>
            </property>
            <property name="iconSize">
             <size>
-             <width>20</width>
-             <height>20</height>
+             <width>50</width>
+             <height>50</height>
             </size>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="face_detection_toggle">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -89,7 +93,17 @@ border-radius: 5px;
             </size>
            </property>
            <property name="text">
-            <string>PushButton</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>assets/icons/face-detection-icon.png</normaloff>assets/icons/face-detection-icon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -163,6 +177,12 @@ border-radius: 5px;
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="0">
              <widget class="QLabel" name="frame_container">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="styleSheet">
                <string notr="true">border: 1px solid black;
 border-radius: 5px;
