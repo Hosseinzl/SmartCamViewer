@@ -98,7 +98,7 @@ border-radius: 5px;
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>assets/icons/face-detection-icon.png</normaloff>assets/icons/face-detection-icon.png</iconset>
+             <normaloff>assets/icons/face-detection-active-icon.png</normaloff>assets/icons/face-detection-active-icon.png</iconset>
            </property>
            <property name="iconSize">
             <size>
