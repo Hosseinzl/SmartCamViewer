@@ -61,8 +61,17 @@ class MainDialog(QtWidgets.QDialog):
 
         if result == QDialog.Accepted:
             device_info = dialog.get_device_data()
-            print("New device info:", device_info)
-            # You can handle dialog result here if needed
+            self.device_service.add_device(
+                device_info["name"],
+                device_info["ip"],
+                device_info["port"],
+                device_info["channel"],
+                device_info["subtype"], 
+                device_info["username"], 
+                device_info["password"], 
+                device_info["format"]
+            )
+            self.load_devices()
 
     def update_frame(self):
         if not self.current_device_id:

@@ -55,8 +55,10 @@ class DeviceManagerService:
                 channel=device.channel, 
                 subtype=device.subtype
             )
+
         else:
             # فرمت پیش‌فرض
-            rtsp_url = f"rtsp://{device.username}:{device.password}@{device.ip}:{device.rtsp_port}/H264?ch={device.channel}&subtype={device.subtype}"
+
+            rtsp_url = f"rtsp://{device.username}:{device.password}@{device.ip}:{device.rtsp_port}/stream?ch={device.channel}&subtype={device.subtype}"
         
         return rtsp_url

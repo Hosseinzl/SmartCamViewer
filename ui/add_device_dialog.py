@@ -17,5 +17,7 @@ class AddDeviceDialog(QDialog):
             "port": self.port_input.text() or "554",  # مقدار پیش‌فرض
             "username": self.username_input.text(),
             "password": self.password_input.text(),
-            "format": self.rtsp_format_input.text()  # فرض بر اینکه کمبوباکس هست
+            "format": self.rtsp_format_input.text(),  # فرض بر اینکه کمبوباکس هست
+            "channel": self.channel_input.value(),
+            "subtype": self.subtype_input.value()
         }
