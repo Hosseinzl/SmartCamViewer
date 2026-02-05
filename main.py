@@ -9,7 +9,6 @@ logging.getLogger('sqlalchemy.dialects').setLevel(logging.ERROR)
 import sys
 from PyQt5.QtWidgets import QApplication
 from qt_material import apply_stylesheet
-from ui.main_window import MainWindow
 from database.sqllite.seed_data import seed_database
 from devices.device_selector import DeviceSelector
 from devices.device_display_service import DeviceDisplayService

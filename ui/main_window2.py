@@ -19,6 +19,14 @@ class MainDialog(QtWidgets.QDialog):
         super().__init__()
         uic.loadUi("test.ui", self)
 
+        # اجازه تغییر اندازه و فعال‌کردن دکمه‌های مینیمایز/ماکسیمایز
+        self.setWindowFlags(
+            self.windowFlags()
+            | Qt.WindowMinimizeButtonHint
+            | Qt.WindowMaximizeButtonHint
+            | Qt.WindowSystemMenuHint
+        )
+
         self.hand_detection_toggle.clicked.connect(self.on_hand_detection_toggle)
         self.face_detection_toggle.clicked.connect(self.on_face_detection_toggle)
         self.pushButton_4.clicked.connect(lambda: print("Button 3 clicked"))
@@ -32,8 +40,15 @@ class MainDialog(QtWidgets.QDialog):
         self.select_device.currentIndexChanged.connect(self.on_device_selected)
         self.load_devices()
 
-        self.frame_container.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        self.frame_container.setMaximumSize(800, 454)
+        # نوار انتخاب دیوایس همیشه کمی فضا داشته باشد و کاملاً مخفی نشود
+        self.device_management_container.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        self.device_management_container.setMinimumHeight(60)
+
+        # فریم ویدیو همراه با تغییر اندازهٔ پنجره بزرگ/کوچک شود
+        self.frame_container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        # جلوگیری از بزرگ‌شدن تدریجی لیبل بر اساس اندازه پیکس‌مپ
+        # و درخواست کشیدن تصویر داخل فضای فعلی لیبل
+        self.frame_container.setScaledContents(True)
 
     def load_devices(self):
         self.select_device.clear()
@@ -93,10 +108,9 @@ class MainDialog(QtWidgets.QDialog):
         qt_image = QImage(rgb_image.tobytes(), w, h, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(qt_image)
 
-        self.frame_container.setPixmap(pixmap.scaled(
-            self.frame_container.width(), self.frame_container.height(),
-            aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio
-        ))
+        # با فعال‌بودن setScaledContents(True)، فقط پیکس‌مپ را تنظیم می‌کنیم
+        # و خود لیبل تصویر را در فضای فعلی‌اش می‌کشد، بدون تغییر اندازه تدریجی.
+        self.frame_container.setPixmap(pixmap)
 
     def closeEvent(self, event):
         if self.frame_thread:
