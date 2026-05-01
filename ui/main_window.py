@@ -17,9 +17,8 @@ from PyQt5.QtWidgets import QDialog, QSizePolicy
 class MainDialog(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("test.ui", self)
+        uic.loadUi("main.ui", self)
 
-        # اجازه تغییر اندازه و فعال‌کردن دکمه‌های مینیمایز/ماکسیمایز
         self.setWindowFlags(
             self.windowFlags()
             | Qt.WindowMinimizeButtonHint
@@ -40,14 +39,11 @@ class MainDialog(QtWidgets.QDialog):
         self.select_device.currentIndexChanged.connect(self.on_device_selected)
         self.load_devices()
 
-        # نوار انتخاب دیوایس همیشه کمی فضا داشته باشد و کاملاً مخفی نشود
         self.device_management_container.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         self.device_management_container.setMinimumHeight(60)
 
-        # فریم ویدیو همراه با تغییر اندازهٔ پنجره بزرگ/کوچک شود
         self.frame_container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        # جلوگیری از بزرگ‌شدن تدریجی لیبل بر اساس اندازه پیکس‌مپ
-        # و درخواست کشیدن تصویر داخل فضای فعلی لیبل
+
         self.frame_container.setScaledContents(True)
 
     def load_devices(self):
@@ -67,12 +63,10 @@ class MainDialog(QtWidgets.QDialog):
         device_id = self.select_device.itemData(index)
         self.current_device_id = device_id
 
-        # توقف ترد قبلی (اگر وجود داشت)
         if self.frame_thread:
             self.frame_thread.stop()
             self.frame_thread = None
 
-        # ساخت ترد جدید
         self.frame_thread = FrameGrabberThread(
             lambda: self.device_display_service.get_frame(device_id)
         )
@@ -108,8 +102,7 @@ class MainDialog(QtWidgets.QDialog):
         qt_image = QImage(rgb_image.tobytes(), w, h, bytes_per_line, QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(qt_image)
 
-        # با فعال‌بودن setScaledContents(True)، فقط پیکس‌مپ را تنظیم می‌کنیم
-        # و خود لیبل تصویر را در فضای فعلی‌اش می‌کشد، بدون تغییر اندازه تدریجی.
+
         self.frame_container.setPixmap(pixmap)
 
     def closeEvent(self, event):

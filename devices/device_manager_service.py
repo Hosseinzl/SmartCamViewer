@@ -45,7 +45,6 @@ class DeviceManagerService:
         if not device:
             return None
         
-        # اگر rtsp_url_format وجود نداشت، از فرمت پیش‌فرض استفاده کن
         if device.rtsp_url_format is not None:
             rtsp_url = device.rtsp_url_format.format(
                 username=device.username, 
@@ -57,8 +56,6 @@ class DeviceManagerService:
             )
 
         else:
-            # فرمت پیش‌فرض
-
             rtsp_url = f"rtsp://{device.username}:{device.password}@{device.ip}:{device.rtsp_port}/stream?ch={device.channel}&subtype={device.subtype}"
         
         return rtsp_url

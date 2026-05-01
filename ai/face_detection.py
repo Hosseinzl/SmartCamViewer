@@ -12,7 +12,6 @@ class FaceDetectionService:
         self.mp_draw = drawing_utils
 
     def detect_faces(self, frame):
-        """تشخیص چهره‌ها در فریم و رسم باکس‌ها"""
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.face_detection.process(rgb_frame)
 
@@ -34,7 +33,6 @@ class FaceDetectionService:
         return frame
 
     def get_face_count(self, frame):
-        """تعداد صورت‌های تشخیص داده شده را برمی‌گرداند"""
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.face_detection.process(rgb_frame)
 
@@ -44,5 +42,4 @@ class FaceDetectionService:
         return 0
 
     def release(self):
-        """آزاد کردن منابع"""
         self.face_detection.close()

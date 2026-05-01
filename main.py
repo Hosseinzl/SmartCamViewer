@@ -12,7 +12,7 @@ from qt_material import apply_stylesheet
 from database.sqllite.seed_data import seed_database
 from devices.device_selector import DeviceSelector
 from devices.device_display_service import DeviceDisplayService
-from ui.main_window2 import MainDialog
+from ui.main_window import MainDialog
 
 
 if __name__ == "__main__":

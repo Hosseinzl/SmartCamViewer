@@ -14,25 +14,19 @@ class HandDetection:
         self.mp_draw = drawing_utils
     
     def detect_hands(self, frame):
-        """تشخیص دست‌ها در فریم و رسم نقاط کلیدی"""
-        # تبدیل BGR به RGB
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         
-        # تشخیص دست‌ها
         results = self.hands.process(rgb_frame)
         
-        # اگر دستی تشخیص داده شد
         multi_hand_landmarks = getattr(results, "multi_hand_landmarks", None)
         if multi_hand_landmarks:
             for hand_landmarks in multi_hand_landmarks:
-                # رسم نقاط کلیدی دست
                 self.mp_draw.draw_landmarks(
                     frame, 
                     hand_landmarks, 
                     list(HAND_CONNECTIONS)
                 )
                 
-                # نمایش تعداد دست‌های تشخیص داده شده
                 cv2.putText(
                     frame, 
                     f"Hands: {len(multi_hand_landmarks)}", 
@@ -46,7 +40,6 @@ class HandDetection:
         return frame
     
     def get_hand_count(self, frame):
-        """تعداد دست‌های تشخیص داده شده را برمی‌گرداند"""
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.hands.process(rgb_frame)
         
@@ -56,5 +49,4 @@ class HandDetection:
         return 0
     
     def release(self):
-        """آزاد کردن منابع"""
         self.hands.close() 

@@ -26,7 +26,6 @@ class DeviceDisplayService:
             return None
         
         try:
-            # Use cached reader if exists, else create and cache
             if device_id not in self.rtsp_readers:
                 print(f"Creating RTSPFrameReader for device {device_id}")
                 self.rtsp_readers[device_id] = RTSPFrameReader(rtsp_url)
@@ -36,13 +35,11 @@ class DeviceDisplayService:
                 print("خطا در خواندن فریم!")
                 return None
             
-            # اگر تشخیص دست فعال است، آن را اعمال کن
             if self.hand_detection_enabled:
                 if self.hand_detection is None:
                     self.hand_detection = HandDetection()
                 frame = self.hand_detection.detect_hands(frame)
             
-            # اگر تشخیص چهره فعال است، آن را اعمال کن
             if self.face_detection_enabled:
                 if self.face_detection is None:
                     self.face_detection = FaceDetectionService()
@@ -55,7 +52,6 @@ class DeviceDisplayService:
             return None
 
     def close(self):
-        """بستن سرویس و آزاد کردن منابع"""
         for reader in self.rtsp_readers.values():
             reader.release()
         self.rtsp_readers.clear()
@@ -65,13 +61,11 @@ class DeviceDisplayService:
             self.face_detection.release()
 
     def toggle_hand_detection(self):
-        """فعال/غیرفعال کردن تشخیص دست"""
         self.hand_detection_enabled = not self.hand_detection_enabled
         status = "فعال" if self.hand_detection_enabled else "غیرفعال"
         print(f"تشخیص دست {status} شد.")
 
     def toggle_face_detection(self):
-        """فعال/غیرفعال کردن تشخیص چهره"""
         self.face_detection_enabled = not self.face_detection_enabled
         status = "فعال" if self.face_detection_enabled else "غیرفعال"
         print(f"تشخیص چهره {status} شد.") 

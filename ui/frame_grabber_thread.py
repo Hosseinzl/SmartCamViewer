@@ -14,7 +14,6 @@ class FrameGrabberThread(QThread):
             frame = self.get_frame()
             if frame is not None:
                 self.frame_received.emit(frame)
-            #self.msleep(30)  # حدود 30 فریم بر ثانیه
 
     def stop(self):
         self.running = False

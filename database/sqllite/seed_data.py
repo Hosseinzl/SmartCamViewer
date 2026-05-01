@@ -6,16 +6,13 @@ from database.sqllite.data_context import SessionLocal, Base
 from database.sqllite.models.sqllite_device import Device
 
 def seed_database():
-    # ابتدا جداول را ایجاد کن
     Base.metadata.create_all(bind=SessionLocal().bind)
     
     session = SessionLocal()
     
-    # بررسی وجود داده در جدول devices
     device_count = session.query(Device).count()
     
     if device_count == 0:
-        # اضافه کردن دیوایس تست
         test_device = Device(
             name="test",
             ip="192.168.1.200",
